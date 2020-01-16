@@ -12,6 +12,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -19,6 +20,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
     }
 }
 
@@ -35,7 +45,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-jackson:2.7.1'
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
-//    implementation 'com.fasterxml.jackson.core:jackson-core:2.10.2'
-//    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.10.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.3.1'
+
+    def room_version = "2.2.3"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+
 }
