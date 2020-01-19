@@ -1,15 +1,11 @@
 
 package rekha.com.ecommerce.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -21,23 +17,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Category {
 
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("products")
     private List<Product> products = null;
     @JsonProperty("child_categories")
-    private List<Integer> childCategories = null;
+    private List<Long> childCategories = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("id")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -62,12 +58,12 @@ public class Category {
     }
 
     @JsonProperty("child_categories")
-    public List<Integer> getChildCategories() {
+    public List<Long> getChildCategories() {
         return childCategories;
     }
 
     @JsonProperty("child_categories")
-    public void setChildCategories(List<Integer> childCategories) {
+    public void setChildCategories(List<Long> childCategories) {
         this.childCategories = childCategories;
     }
 

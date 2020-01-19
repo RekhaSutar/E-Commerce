@@ -9,17 +9,16 @@ import rekha.com.ecommerce.data.db.Tables
  * Created by Rekha Sutar on 17,January,2020
  */
 
-
 @Dao
-interface CategoryDao : Daos<Tables.Category> {
+interface ProductDao : Daos<Tables.Product>{
 
-    @Query("SELECT * FROM Category")
-    override fun getAll(): List<Tables.Category>
-
-    @Insert
-    override fun insertAll(vararg data: Tables.Category)
+    @Query("SELECT * FROM Product")
+    override fun getAll(): List<Tables.Product>
 
     @Insert
-    override fun insert(data : Tables.Category)
+    override fun insertAll(vararg data: Tables.Product)
+
+    @Insert
+    override fun insert(data : Tables.Product)
 
 }

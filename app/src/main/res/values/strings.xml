@@ -3,4 +3,5 @@
     <string name="error_api_failed">Api failed to fetch data</string>
     <string name="error_null_response">Recieved null response from server</string>
     <string name="error_something_went_wrong">Something went wrong. Please try again later.</string>
+    <string name="error_no_data_available">No Data Available</string>
 </resources>

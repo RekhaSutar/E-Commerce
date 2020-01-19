@@ -1,25 +1,24 @@
 package rekha.com.ecommerce
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import rekha.com.ecommerce.data.Repository
 import rekha.com.ecommerce.data.RepositoryImpl
-import rekha.com.ecommerce.data.entity.ProductMaster
+import rekha.com.ecommerce.data.db.Tables
 
-class MainActivity : AppCompatActivity() , Repository.CallBack<ProductMaster>{
+class MainActivity : AppCompatActivity() , Repository.CallBack<List<Tables.Category>>{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        RepositoryImpl.getProductMaster(this)
-
+        RepositoryImpl.getCategories(this)
     }
 
+    override fun onSuccess(categories: List<Tables.Category>) {
 
-    override fun onSuccess(response: ProductMaster) {
-        Log.d("MainActivity - ", response.categories[0].products[0].name)
+        Log.d("MainActivity - cats", categories.size.toString())
     }
 
     override fun onFailure(failureReason: String) {

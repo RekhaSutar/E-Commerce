@@ -1,14 +1,10 @@
 
 package rekha.com.ecommerce.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -20,53 +16,53 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class RankingProduct {
 
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
     @JsonProperty("view_count")
-    private Integer viewCount;
+    private Long viewCount;
     @JsonProperty("order_count")
-    private Integer orderCount;
+    private Long orderCount;
     @JsonProperty("shares")
-    private Integer shares;
+    private Long shares;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("id")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @JsonProperty("view_count")
-    public Integer getViewCount() {
+    public Long getViewCount() {
         return viewCount;
     }
 
     @JsonProperty("view_count")
-    public void setViewCount(Integer viewCount) {
+    public void setViewCount(Long viewCount) {
         this.viewCount = viewCount;
     }
 
     @JsonProperty("order_count")
-    public Integer getOrderCount() {
+    public Long getOrderCount() {
         return orderCount;
     }
 
     @JsonProperty("order_count")
-    public void setOrderCount(Integer orderCount) {
+    public void setOrderCount(Long orderCount) {
         this.orderCount = orderCount;
     }
 
     @JsonProperty("shares")
-    public Integer getShares() {
+    public Long getShares() {
         return shares;
     }
 
     @JsonProperty("shares")
-    public void setShares(Integer shares) {
+    public void setShares(Long shares) {
         this.shares = shares;
     }
 

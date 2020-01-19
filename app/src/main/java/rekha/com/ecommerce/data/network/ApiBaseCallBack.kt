@@ -23,7 +23,7 @@ class ApiBaseCallBack<T>(private val callback : Repository.CallBack<T>) : Callba
     override fun onResponse(call: Call<T>, response: Response<T>) {
         val responseBody = response.body()
         if (response.isSuccessful && responseBody != null)
-            callback.onSuccess(responseBody!!)
+            callback.onSuccess(responseBody)
         else {
             Log.e(TAG, MainApplication.getContext().getString(R.string.error_null_response))
             callback.onFailure(MainApplication.getContext().getString(R.string.error_something_went_wrong))
