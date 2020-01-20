@@ -19,4 +19,11 @@
     <string name="product_list_title">Product List</string>
     <string name="product_selected">%2s Product selected</string>
     <string name="lable_all">All Products</string>
+    <string name="label_tax">VAT :</string>
+    <string name="label_size">Size</string>
+    <string name="label_color">Color</string>
+    <string name="label_price">Price</string>
+    <string name="tag">tag</string>
+    <string name="label_sizes">Sizes</string>
+    <string name="label_colors">Colors</string>
 </resources>

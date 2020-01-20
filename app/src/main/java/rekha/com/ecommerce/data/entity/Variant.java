@@ -20,23 +20,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Variant {
 
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
     @JsonProperty("color")
     private String color;
     @JsonProperty("size")
-    private Integer size;
+    private Long size;
     @JsonProperty("price")
-    private Integer price;
+    private Long price;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("id")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,22 +51,22 @@ public class Variant {
     }
 
     @JsonProperty("size")
-    public Integer getSize() {
+    public Long getSize() {
         return size;
     }
 
     @JsonProperty("size")
-    public void setSize(Integer size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 
     @JsonProperty("price")
-    public Integer getPrice() {
+    public Long getPrice() {
         return price;
     }
 
     @JsonProperty("price")
-    public void setPrice(Integer price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 

@@ -32,16 +32,17 @@ interface Tables {
     data class Variants(
         @PrimaryKey @ColumnInfo(name = "Id") var id: Long,
         @ColumnInfo(name = "Color") var color: String,
-        @ColumnInfo(name = "Size") var size: String,
-        @ColumnInfo(name = "Price") var price: String
+        @ColumnInfo(name = "Size") var size: Long?,
+        @ColumnInfo(name = "Price") var price: Long,
+        @ColumnInfo(name = "Parent Id") var parentId: Long
     )
 
     @Entity(tableName = "Tax")
     data class Tax(
-        @PrimaryKey(autoGenerate = true)
-        val id: Long,
-        @ColumnInfo(name = "Name") var name: Long,
-        @ColumnInfo(name = "Value") var value: String
+        @PrimaryKey(autoGenerate = true) val id: Long,
+        @ColumnInfo(name = "Name") var name: String,
+        @ColumnInfo(name = "Value") var value: Float,
+        @ColumnInfo(name = "Parent Id") var parentId: Long
     )
 
 }

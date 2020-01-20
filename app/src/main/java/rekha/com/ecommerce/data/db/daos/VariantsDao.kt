@@ -11,12 +11,17 @@ import rekha.com.ecommerce.data.db.Tables
  */
 
 @Dao
-interface VariantsDao {
+interface VariantsDao : Daos<Tables.Variants>{
 
     @Query("SELECT * FROM Variants")
-    fun getAll(): List<Tables.Variants>
+    override fun getAll(): List<Tables.Variants>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg variant: Tables.Variants)
+    override fun insertAll(vararg variant: Tables.Variants)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    override fun insert(data : Tables.Variants)
+
+    @Query("SELECT * FROM Variants WHERE `Parent Id` = :productId")
+    fun getVariantsDetails(productId: Long) : List<Tables.Variants>
 }

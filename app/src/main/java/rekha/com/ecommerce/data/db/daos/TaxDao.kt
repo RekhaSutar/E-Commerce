@@ -5,18 +5,25 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import rekha.com.ecommerce.data.db.Tables
+import rekha.com.ecommerce.data.db.Tables.Tax
 
 /**
  * Created by Rekha Sutar on 17,January,2020
  */
 
 @Dao
-interface TaxDao {
+interface TaxDao : Daos<Tables.Tax> {
 
     @Query("SELECT * FROM Tax")
-    fun getAll(): List<Tables.Tax>
+    override fun getAll(): List<Tax>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg tax: Tables.Tax)
 
+    override fun insertAll(vararg tax: Tax)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    override fun insert(data : Tables.Tax)
+
+    @Query("SELECT * FROM Tax WHERE `Parent Id` = :productId")
+    fun getTaxDetails(productId: Long) : Tables.Tax
 }

@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import rekha.com.ecommerce.data.db.daos.CategoryDao
 import rekha.com.ecommerce.data.db.daos.ProductDao
+import rekha.com.ecommerce.data.db.daos.TaxDao
+import rekha.com.ecommerce.data.db.daos.VariantsDao
 
 /**
  * Created by Rekha Sutar on 16,January,2020
@@ -39,4 +41,6 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao
     abstract fun productDao(): ProductDao
+    abstract fun variantsDao(): VariantsDao
+    abstract fun taxDao(): TaxDao
 }

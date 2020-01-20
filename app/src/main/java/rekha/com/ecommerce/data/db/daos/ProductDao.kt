@@ -34,4 +34,7 @@ interface ProductDao : Daos<Tables.Product>{
     @Query("SELECT * FROM Product WHERE `Category Id` = :parentCategoryId ORDER BY `Order Count` DESC")
     fun getProductsWithOrderCountFilter(parentCategoryId: Long) : List<Tables.Product>
 
+    @Query("SELECT * FROM Product WHERE `Id` = :productId")
+    fun getProductDetails(productId: Long) : Tables.Product
+
 }
