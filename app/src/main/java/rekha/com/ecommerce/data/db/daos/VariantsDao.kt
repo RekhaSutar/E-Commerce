@@ -2,6 +2,7 @@ package rekha.com.ecommerce.data.db.daos
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import rekha.com.ecommerce.data.db.Tables
 
@@ -15,7 +16,7 @@ interface VariantsDao {
     @Query("SELECT * FROM Variants")
     fun getAll(): List<Tables.Variants>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg variant: Tables.Variants)
 
 }

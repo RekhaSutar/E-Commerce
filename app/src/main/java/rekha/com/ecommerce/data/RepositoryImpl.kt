@@ -8,6 +8,7 @@ import rekha.com.ecommerce.R
 import rekha.com.ecommerce.data.db.AppDatabase
 import rekha.com.ecommerce.data.db.Tables
 import rekha.com.ecommerce.data.entity.Product
+import rekha.com.ecommerce.data.entity.Product.*
 import rekha.com.ecommerce.data.entity.ProductMaster
 import rekha.com.ecommerce.data.network.OnlineService
 
@@ -18,7 +19,7 @@ interface RepositoryImpl {
     companion object {
         private val db = AppDatabase.getInstance(MainApplication.getContext())
 
-        fun getCategories(callBack: Repository.CallBack<List<Tables.Category>>) {
+/*        fun getCategories(callBack: Repository.CallBack<List<Tables.Category>>?) {
             var categories: List<Tables.Category>? = null
             GlobalScope.launch {
                 categories = db?.categoryDao()?.getAll()
@@ -29,28 +30,27 @@ interface RepositoryImpl {
                                 GlobalScope.launch {
                                     categories = db?.categoryDao()?.getAll()
                                     if (!categories.isNullOrEmpty()) {
-                                        callBack.onSuccess(categories!!)
+                                        callBack?.onSuccess(categories!!)
                                     } else {
-                                        callBack.onFailure(MainApplication.getContext().getString(R.string.error_no_data_available))
+                                        callBack?.onFailure(MainApplication.getContext().getString(R.string.error_no_data_available))
                                     }
                                 }
                             }
                         }
 
                         override fun onFailure(failureReason: String) {
-                            callBack.onFailure(failureReason)
+                            callBack?.onFailure(failureReason)
                         }
 
                     })
                 } else {
-                    callBack.onSuccess(categories!!)
+                    callBack?.onSuccess(categories!!)
                 }
 
             }
 
-        }
-
-        private fun getDataFromServerAndStoreInDb(callBack: Repository.CallBack<Boolean>) {
+        }*/
+        fun getDataFromServerAndStoreInDb(callBack: Repository.CallBack<Boolean>) {
 
             OnlineService().getProductMaster(object : Repository.CallBack<ProductMaster> {
                 override fun onSuccess(response: ProductMaster) {
@@ -123,6 +123,45 @@ interface RepositoryImpl {
                 }
             }
 
+        }
+
+        fun getCategories(callBack: Repository.CallBack<List<Tables.Category>>){
+            getCategories(-1, callBack)
+        }
+
+        fun getCategories(parentCategoryId: Long, callBack: Repository.CallBack<List<Tables.Category>>){
+            var categories : List<Tables.Category>? = null
+            GlobalScope.launch {
+                categories = db?.categoryDao()?.getSubCategories(parentCategoryId)
+                if (categories.isNullOrEmpty()) callBack.onFailure(MainApplication.getContext().getString(R.string.error_no_data_available))
+                else callBack.onSuccess(categories!!)
+            }
+        }
+
+        fun getProducts(parentCategoryId: Long, callBack: Repository.CallBack<List<Tables.Product>>){
+            var products : List<Tables.Product>? = null
+            GlobalScope.launch {
+                products = db?.productDao()?.getProducts(parentCategoryId)
+                if (products.isNullOrEmpty()) callBack.onFailure(MainApplication.getContext().getString(R.string.error_no_data_available))
+                else callBack.onSuccess(products!!)
+            }
+        }
+
+        fun getProducts(
+            parentCategoryId: Long,
+            callBack: Repository.CallBack<List<Tables.Product>>,
+            rankingFilter: String
+        ) {
+            var products : List<Tables.Product>? = null
+            GlobalScope.launch {
+                when(rankingFilter){
+                    RANKING_MOST_VIEWED_PRODUCTS -> products = db?.productDao()?.getProductsWithViewCountFilter(parentCategoryId)
+                    RANKING_MOST_SHARED_PRODUCTS -> products = db?.productDao()?.getProductsWithSharesFilter(parentCategoryId)
+                    RANKING_MOST_ORDERED_PRODUCTS -> products = db?.productDao()?.getProductsWithOrderCountFilter(parentCategoryId)
+                }
+                if (products.isNullOrEmpty()) callBack.onFailure(MainApplication.getContext().getString(R.string.error_no_data_available))
+                else callBack.onSuccess(products!!)
+            }
         }
 
     }

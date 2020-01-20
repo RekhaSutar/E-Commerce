@@ -4,4 +4,19 @@
     <string name="error_null_response">Recieved null response from server</string>
     <string name="error_something_went_wrong">Something went wrong. Please try again later.</string>
     <string name="error_no_data_available">No Data Available</string>
+
+    <string name="title_activity_category">CategoryActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="product_list_title">Product List</string>
+    <string name="product_selected">%2s Product selected</string>
+    <string name="lable_all">All Products</string>
 </resources>
